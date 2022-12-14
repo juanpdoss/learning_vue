@@ -1,30 +1,65 @@
 <script setup lang="ts">
-import type { Todo  } from "./Body.vue";
-import { defineEmits } from "vue";
+import type { Todo } from "@/types/todo";
+import { defineEmits, ref, toRefs } from "vue";
 
-defineProps<{
+const props = defineProps<{
   todo: Todo;
 }>();
 
 const emit = defineEmits(["onTodoDeletion"]);
+const isCursorInsideBox = ref(false);
+const { todo } = toRefs(props);
+
+function changeCursorInsideBoxState() {
+  isCursorInsideBox.value = !isCursorInsideBox.value;
+}
 
 function deleteTodo() {
-    emit("onTodoDeletion");
+  emit("onTodoDeletion");
+}
+
+function markTodoAsDone() {
+  todo.value.done = true;
 }
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green" :class="" >{{ todo.text }}</h1>
-    <button @click="deleteTodo()">Delete</button>
+  <div
+    class="parent-wrapper"
+    :class="{ selected: isCursorInsideBox }"
+    @mouseenter="changeCursorInsideBoxState()"
+    @mouseleave="changeCursorInsideBoxState()"
+    @click="markTodoAsDone()"
+  >
+    <div class="todo-container">
+      <h1 class="green" :class="{ done: todo.done }">{{ todo.text }}</h1>
+      <button @click="deleteTodo()">Delete</button>
+    </div>
+
+    <p v-if="isCursorInsideBox">Click to mark as done!</p>
   </div>
-</template> 
+</template>
 
 <style scoped>
-.greetings {
+.todo-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+.parent-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.done {
+  text-decoration: line-through;
+}
+.selected {
+  border-radius: 15px;
+  background-color: #b4f1e3;
+  padding: 20px;
 }
 
 button {
