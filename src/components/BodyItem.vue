@@ -17,6 +17,7 @@
 .item {
   margin-top: 2rem;
   display: flex;
+  width: 30rem;
 }
 .details {
   flex: 1;

@@ -1,24 +1,32 @@
 <script setup lang="ts">
-import HeaderTitle from './components/HeaderTitle.vue'
-import Body from './components/Body.vue'
+import HeaderTitle from "./components/HeaderTitle.vue";
+import Body from "./components/Body.vue";
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="parent-wrapper">
+    <header>
+      <div class="wrapper">
+        <!-- using defined "msg variable defined in HeaderTitle.value with defineProps" -->
+        <HeaderTitle msg="Vue basic aspects" />
+      </div>
+    </header>
 
-    <div class="wrapper">
-      <!-- using defined "msg variable defined in HeaderTitle.value with defineProps" -->
-      <HeaderTitle msg="Vue basic aspects" />
-    </div>
-  </header>
-
-  <main>
-    <Body />
-  </main>
+    <main>
+      <Body />
+    </main>
+  </div>
 </template>
-
 <style scoped>
+.parent-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  scroll-behavior: auto;
+}
+
 header {
   line-height: 1.5;
 }
@@ -28,21 +36,4 @@ header {
   margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>

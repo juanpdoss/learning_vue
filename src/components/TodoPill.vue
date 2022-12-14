@@ -52,7 +52,6 @@ function markTodoAsDone() {
   justify-content: space-between;
   flex-direction: column;
 }
-
 .done {
   text-decoration: line-through;
 }
