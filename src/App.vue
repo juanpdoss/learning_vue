@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import HeaderTitle from "./components/HeaderTitle.vue";
 import Body from "./components/Body.vue";
+
+
+
+
+
 </script>
 
 <template>
-  <div class="parent-wrapper">
+  <div class="parent-wrapper" id="app">
     <header>
       <div class="wrapper">
         <!-- using defined "msg variable defined in HeaderTitle.value with defineProps" -->
@@ -13,9 +18,10 @@ import Body from "./components/Body.vue";
     </header>
 
     <main>
-      <Body />
+      <router-view></router-view>
     </main>
   </div>
+
 </template>
 <style scoped>
 .parent-wrapper {
@@ -25,6 +31,7 @@ import Body from "./components/Body.vue";
   align-items: center;
   width: 100%;
   scroll-behavior: auto;
+  padding: auto;
 }
 
 header {
@@ -35,5 +42,4 @@ header {
   display: block;
   margin: 0 auto 2rem;
 }
-
 </style>

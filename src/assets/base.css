@@ -36,6 +36,16 @@
   --section-gap: 160px;
 }
 
+
+body::-webkit-scrollbar {
+  width: 9px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color:  rgb(123, 237, 201);  /* color of the scroll thumb */
+  border-radius: 15px;       /* roundness of the scroll thumb */
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
